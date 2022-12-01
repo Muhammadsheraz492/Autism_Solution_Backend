@@ -1,9 +1,8 @@
 const  mongoose=require('mongoose');
-const Type={type:String,required:true}
 const User=mongoose.Schema({
     _id:mongoose.Types.ObjectId,
-    username:Type,
-    email:Type,
+    username:{type:String,required:true},
+    email:{type:String,required:true},
     password:{type:String,required:true}
 })
 

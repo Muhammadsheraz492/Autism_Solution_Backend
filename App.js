@@ -10,6 +10,8 @@ mongoose.connect(url,{
     useNewUrlParser: true, useUnifiedTopology: true 
 }).then(()=>{
     console.log("Connection is Established");
+}).catch(()=>{
+    console.log("Something went wrong in connection");
 })
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
