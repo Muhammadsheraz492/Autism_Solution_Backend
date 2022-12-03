@@ -4,6 +4,7 @@ const morgan=require("morgan")
 const Signup=require('./Api/Routes/Signup')
 const bodyParser=require('body-parser');
 const { default: mongoose } = require('mongoose');
+const Route = require('./Api/Routes/Product');
 const url='mongodb://localhost:27017'
 app.use(morgan('dev'))
 mongoose.connect(url,{
@@ -17,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.use("/Signup",Signup)
+app.use("/Product",Route)
 // app.use("/",(req,res,next)=>{
 // res.status(200).json("Server in runing")
 // })
