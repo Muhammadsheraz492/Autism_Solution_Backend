@@ -4,8 +4,6 @@ const User = require("../model/User");
 const Route = express.Router();
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
-// const myPlaintextPassword = 's0/\/\P4$$w0rD';
-// const someOtherPlaintextPassword = 'not_bacon';
 Route.post("/", (req, res, next) => {
   console.log(req.body.email);
   console.log(req.body.username);
