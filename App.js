@@ -21,6 +21,11 @@ app.use(bodyParser.json())
 app.use('/test',(req,res,next)=>{
     res.status(200).json("Server is Runing")
 })
+// app.use("/",(req,res)=>{
+// res.status(200).json({
+//     "Status":"Server is runing"
+// })
+// })
 app.use("/Signup",Signup)
 app.use("/Login",Login)
 app.use("/Product",Route)

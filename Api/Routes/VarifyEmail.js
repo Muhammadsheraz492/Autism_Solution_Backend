@@ -11,7 +11,7 @@ const Main=async(req,res,next)=>{
         secure: true, // true for 465, false for other ports
         auth: {
           user:"s412971@gmail.com", // generated ethereal user
-          pass: "nvsvtgtembuwfhht", // generated ethereal password
+          pass: "vfscqrhxirkbwsxm", // generated ethereal password
         },
     })
      transporter.sendMail({

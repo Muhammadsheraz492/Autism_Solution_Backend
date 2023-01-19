@@ -42,6 +42,7 @@ Route.post("/", (req, res, next) => {
       Category: req.body.Category,
       Name: req.body.Name,
       PronunSymbol: req.body.PronunSymbol,
+      Pronnous:req.body.Pronnous
     });
     document
       .save()
