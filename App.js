@@ -6,6 +6,7 @@ const Login=require('./Api/Routes/Login')
 const bodyParser=require('body-parser');
 const { default: mongoose } = require('mongoose');
 const Route = require('./Api/Routes/Product');
+const QuzRoute = require('./Api/Routes/Quz');
 const VarifyEmail = require('./Api/Routes/VarifyEmail');
 const url='mongodb://localhost:27017'
 app.use(morgan('dev'))
@@ -29,7 +30,9 @@ app.use('/test',(req,res,next)=>{
 app.use("/Signup",Signup)
 app.use("/Login",Login)
 app.use("/Product",Route)
+app.use("/Quz",QuzRoute)
 app.use("/VarifyEmail",VarifyEmail)
+app.use("/Upload",express.static('Upload'))
 app.use((req,res,next)=>{
     const error=new Error('Not Found')
     error.status=404

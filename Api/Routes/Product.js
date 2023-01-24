@@ -13,16 +13,27 @@ const storage = multer.diskStorage({
   },
 });
 const Upload = multer({ storage: storage });
-Route.post("/", (req, res, next) => {
+Route.post("/", Upload.single("Upload"),(req, res, next) => {
   // res.s
   if (
     req.body.Category == "ThreeWords" ||
     req.body.Category == "FiveSentence"
   ) {
+   
+   
+   if (req.body.Name.length>3) {
+     res.status(400).json({
+      "Status":false,
+      "message":"Name Length is Genter then 3 latter"
+     })
+   }
+   
     const document = new Document({
       _id: mongoose.Types.ObjectId(),
       Category: req.body.Category,
       Name: req.body.Name,
+    VocalImage: req.file.path,
+
     });
     document
       .save()
@@ -56,7 +67,153 @@ Route.post("/", (req, res, next) => {
           error: err,
         });
       });
-  } else {
+  }else if (
+    req.body.Category == "GreaterThenThreeLatter" 
+    // req.body.Category == "FiveSentence"
+  ) {
+   
+   
+   
+   
+    const document = new Document({
+      _id: mongoose.Types.ObjectId(),
+      Category: req.body.Category,
+      Name: req.body.Name,
+    VocalImage: req.file.path,
+
+    });
+    document
+      .save()
+      .then(() => {
+        res.status(200).json({
+          message: "Okey Data Captured",
+        });
+      })
+      .catch((err) => {
+        res.status(300).json({
+          error: err,
+        });
+      });
+  } 
+   else if (
+    req.body.Category == "Fourlatters" 
+    // req.body.Category == "FiveSentence"
+  ) {
+   
+   
+   if (req.body.Name.length>4) {
+    
+     res.end({
+      "Status":false,
+      "message":"Name Length is Genter then 3 latter"
+    });
+
+   }
+   
+    const document = new Document({
+      _id: mongoose.Types.ObjectId(),
+      Category: req.body.Category,
+      Name: req.body.Name,
+    VocalImage: req.file.path,
+
+    });
+    document
+      .save()
+      .then(() => {
+        res.status(200).json({
+          message: "Okey Data Captured",
+        });
+      })
+      .catch((err) => {
+        res.status(300).json({
+          error: err,
+        });
+      });
+  } 
+  else if (
+    req.body.Category == "TwoWord" 
+    // req.body.Category == "FiveSentence"
+  ) {
+   
+   
+ 
+   
+    const document = new Document({
+      _id: mongoose.Types.ObjectId(),
+      Category: req.body.Category,
+      Name: req.body.Name,
+    VocalImage: req.file.path,
+
+    });
+    document
+      .save()
+      .then(() => {
+        res.status(200).json({
+          message: "Okey Data Captured",
+        });
+      })
+      .catch((err) => {
+        res.status(300).json({
+          error: err,
+        });
+      });
+  } 
+  else if (
+    req.body.Category == "ThreeWord" 
+    // req.body.Category == "FiveSentence"
+  ) {
+   
+   
+ 
+   
+    const document = new Document({
+      _id: mongoose.Types.ObjectId(),
+      Category: req.body.Category,
+      Name: req.body.Name,
+    VocalImage: req.file.path,
+
+    });
+    document
+      .save()
+      .then(() => {
+        res.status(200).json({
+          message: "Okey Data Captured",
+        });
+      })
+      .catch((err) => {
+        res.status(300).json({
+          error: err,
+        });
+      });
+  }   else if (
+    req.body.Category == "Scentence" 
+    // req.body.Category == "FiveSentence"
+  ) {
+   
+   
+ 
+   
+    const document = new Document({
+      _id: mongoose.Types.ObjectId(),
+      Category: req.body.Category,
+      Name: req.body.Name,
+    VocalImage: req.file.path,
+
+    });
+    document
+      .save()
+      .then(() => {
+        res.status(200).json({
+          message: "Okey Data Captured",
+        });
+      })
+      .catch((err) => {
+        res.status(300).json({
+          error: err,
+        });
+      });
+  } 
+  else {
     res.status(300).json({
       Status: false,
       message: "Something Went Wrong",
