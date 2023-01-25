@@ -16,8 +16,7 @@ const Upload = multer({ storage: storage });
 Route.post("/", Upload.single("Upload"),(req, res, next) => {
   // res.s
   if (
-    req.body.Category == "ThreeWords" ||
-    req.body.Category == "FiveSentence"
+    req.body.Category == "Threelatters" 
   ) {
    
    
@@ -35,11 +34,12 @@ Route.post("/", Upload.single("Upload"),(req, res, next) => {
     VocalImage: req.file.path,
 
     });
+    console.log(document);
     document
       .save()
       .then(() => {
         res.status(200).json({
-          message: "Okey Data Captured",
+          "message":`${req.body.Name} is uploaded on this Threelatters Category`
         });
       })
       .catch((err) => {
@@ -52,28 +52,39 @@ Route.post("/", Upload.single("Upload"),(req, res, next) => {
       _id: mongoose.Types.ObjectId(),
       Category: req.body.Category,
       Name: req.body.Name,
-      PronunSymbol: req.body.PronunSymbol,
-      Pronnous:req.body.Pronnous
     });
     document
       .save()
       .then(() => {
         res.status(200).json({
-          message: "Okey Data Captured",
+          message: `${req.body.Name} is Add In Pronunciation`,
         });
       })
       .catch((err) => {
+        console.log(err);
         res.status(300).json({
           error: err,
         });
       });
   }else if (
-    req.body.Category == "GreaterThenThreeLatter" 
+    req.body.Category == "GreaterThenThreeLetter" 
     // req.body.Category == "FiveSentence"
   ) {
    
-   
-   
+    if (req.body.Name.length<4) {
+      res.status(400).json({
+       "Status":false,
+       "message":"Name Length is Less then 4 latter"
+      })
+    }
+   else if (req.body.Name.length>50) {
+      // res.status(200).end("Name Length is Greater then 50 latter")
+      // res.write("Name Length is Greater then 50 latter").e
+    
+      // res.send("Name Length is Greater then 50 latter");
+      const email = "Name Length is Greater then 50 latter";
+      res.sendStatus(email);
+    }
    
     const document = new Document({
       _id: mongoose.Types.ObjectId(),
@@ -86,7 +97,7 @@ Route.post("/", Upload.single("Upload"),(req, res, next) => {
       .save()
       .then(() => {
         res.status(200).json({
-          message: "Okey Data Captured",
+          message: `${req.body.Name} is Add In GreaterThenThreeLetter`,
         });
       })
       .catch((err) => {
@@ -96,7 +107,7 @@ Route.post("/", Upload.single("Upload"),(req, res, next) => {
       });
   } 
    else if (
-    req.body.Category == "Fourlatters" 
+    req.body.Category == "Fourletters" 
     // req.body.Category == "FiveSentence"
   ) {
    
@@ -105,7 +116,7 @@ Route.post("/", Upload.single("Upload"),(req, res, next) => {
     
      res.end({
       "Status":false,
-      "message":"Name Length is Genter then 3 latter"
+      "message":"Name Length is Genter then 4 letter"
     });
 
    }
@@ -121,7 +132,7 @@ Route.post("/", Upload.single("Upload"),(req, res, next) => {
       .save()
       .then(() => {
         res.status(200).json({
-          message: "Okey Data Captured",
+          message: `${req.body.Name} is Add In Fourletters`,
         });
       })
       .catch((err) => {
@@ -136,7 +147,11 @@ Route.post("/", Upload.single("Upload"),(req, res, next) => {
   ) {
    
    
- 
+    const str = req.body.Name;
+    const words = str.split(" ");
+    if (words.length <= 2) {
+   
+    
    
     const document = new Document({
       _id: mongoose.Types.ObjectId(),
@@ -149,7 +164,7 @@ Route.post("/", Upload.single("Upload"),(req, res, next) => {
       .save()
       .then(() => {
         res.status(200).json({
-          message: "Okey Data Captured",
+          message: `${req.body.Name} is Add In Two words`,
         });
       })
       .catch((err) => {
@@ -157,6 +172,11 @@ Route.post("/", Upload.single("Upload"),(req, res, next) => {
           error: err,
         });
       });
+    } else {
+
+      res.sendStatus("String does not contain two words.");
+    }
+    
   } 
   else if (
     req.body.Category == "ThreeWord" 
@@ -164,7 +184,11 @@ Route.post("/", Upload.single("Upload"),(req, res, next) => {
   ) {
    
    
- 
+    const str = req.body.Name;
+    const words = str.split(" ");
+    if (words.length <= 3) {
+   
+    
    
     const document = new Document({
       _id: mongoose.Types.ObjectId(),
@@ -177,7 +201,7 @@ Route.post("/", Upload.single("Upload"),(req, res, next) => {
       .save()
       .then(() => {
         res.status(200).json({
-          message: "Okey Data Captured",
+          message: `${req.body.Name} is Add In Three words`,
         });
       })
       .catch((err) => {
@@ -185,13 +209,32 @@ Route.post("/", Upload.single("Upload"),(req, res, next) => {
           error: err,
         });
       });
-  }   else if (
+    } else {
+
+      res.sendStatus("String does not contain greater then three words.");
+    }
+    
+  } 
+    else if (
     req.body.Category == "Scentence" 
     // req.body.Category == "FiveSentence"
   ) {
    
    
- 
+    if (req.body.Name.length<4) {
+      res.status(400).json({
+       "Status":false,
+       "message":"Name Length is Less then 4 word"
+      })
+    }
+   else if (req.body.Name.length>40) {
+      // res.status(200).end("Name Length is Greater then 50 latter")
+      // res.write("Name Length is Greater then 50 latter").e
+    
+      // res.send("Name Length is Greater then 50 latter");
+      const email = "Name Length is Greater then 40 word";
+      res.sendStatus(email);
+    }
    
     const document = new Document({
       _id: mongoose.Types.ObjectId(),
@@ -204,7 +247,8 @@ Route.post("/", Upload.single("Upload"),(req, res, next) => {
       .save()
       .then(() => {
         res.status(200).json({
-          message: "Okey Data Captured",
+          message: `${req.body.Name} is Add In Scentence`,
+
         });
       })
       .catch((err) => {

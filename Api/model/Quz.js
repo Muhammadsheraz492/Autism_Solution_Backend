@@ -1,9 +1,10 @@
 const mongoose=require('mongoose')
 const  Quz=mongoose.Schema({
     _id:mongoose.Types.ObjectId,
-    Name:{type:String},
+    Question:{type:String},
     Option:{},
     VocalImage:{type:String},
+    Correct:{type:String},
 
 })
 

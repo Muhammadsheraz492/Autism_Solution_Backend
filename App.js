@@ -6,8 +6,11 @@ const Login=require('./Api/Routes/Login')
 const bodyParser=require('body-parser');
 const { default: mongoose } = require('mongoose');
 const Route = require('./Api/Routes/Product');
-const QuzRoute = require('./Api/Routes/Quz');
+const QuzRoute = require('./Api/Routes/QuzRoute');
+// Quz
 const VarifyEmail = require('./Api/Routes/VarifyEmail');
+// const Quz = require('./Api/model/Quz');
+
 const url='mongodb://localhost:27017'
 app.use(morgan('dev'))
 mongoose.connect(url,{

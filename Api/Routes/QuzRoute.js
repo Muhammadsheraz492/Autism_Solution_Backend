@@ -4,7 +4,7 @@ const Route = express.Router();
 // const Document = require("../model/Documents");
 // Quz
 const multer = require("multer");
-const Quz = require("../model/Quz");
+const Quz1 = require("../model/Quz");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "./Upload/");
@@ -20,10 +20,11 @@ const Upload = multer({ storage: storage });
 Route.post("/", Upload.single("Upload"),(req, res, next) => {
 
 
-    const Quz = new Quz({
+    const Quz = new Quz1({
         _id: mongoose.Types.ObjectId(),
         Option: req.body.Option,
-        Name: req.body.Name,
+        Question: req.body.Question,
+        Correct:req.body.Correct,
         VocalImage: req.file.path,
       });
       Quz
@@ -41,7 +42,17 @@ Route.post("/", Upload.single("Upload"),(req, res, next) => {
 })
 
 
+Route.get('/',(req,res,next)=>{
+  Quz1.find({}).then((doc)=>{
+       res.status(200).json(doc)
+  }).catch((err)=>{
+    res.status(200).json({
+      status:false,
+      message:err
+    })
+  })
 
+})
 
 
 
